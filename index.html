@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>XEROF 256 - Premium Gold Signals</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
+body{background:#0a0618;color:white;min-height:100vh}
+.header{background:linear-gradient(135deg,#2d0a5e,#7b2ff7,#d4af37);padding:22px 16px;text-align:center;border-bottom:3px solid #d4af37}
+.logo{font-size:32px;font-weight:900;letter-spacing:2px}
+.logo span{color:#ffd700}
+.sub{font-size:12px;opacity:.9;margin-top:4px}
+.quote{background:#1a0f35;border:1px solid #7b2ff7;margin:14px;border-radius:14px;padding:14px;text-align:center;font-style:italic;color:#e6d5ff;font-size:14px}
+.quote b{color:#ffd700;display:block;margin-top:6px;font-style:normal;font-size:11px}
+.card{background:#160b2e;border:1px solid #3a1a7a;margin:12px;border-radius:16px;padding:16px}
+.gold-price{font-size:28px;font-weight:900;color:#ffd700}
+.live{font-size:11px;background:#00c853;padding:4px 10px;border-radius:20px}
+.bar{height:14px;background:#2a1855;border-radius:20px;overflow:hidden;margin:8px 0}
+.fill{height:100%;width:12%;background:linear-gradient(90deg,#7b2ff7,#ffd700)}
+.signal-box{text-align:center;padding:18px;border-radius:14px;margin-top:12px;background:#0f0724;border:2px dashed #7b2ff7}
+.btn{display:block;width:100%;padding:14px;border:none;border-radius:12px;font-weight:800;font-size:15px;margin-top:10px;cursor:pointer}
+.btn-gold{background:linear-gradient(90deg,#ffd700,#ffaa00);color:#1a0f35}
+.btn-purple{background:#7b2ff7;color:white}
+.btn-green{background:#00c853;color:white}
+.btn-white{background:white;color:#333;display:flex;align-items:center;justify-content:center;gap:10px}
+input{width:100%;padding:13px;border-radius:10px;border:1px solid #7b2ff7;background:#0f0724;color:white;font-size:15px;text-align:center;letter-spacing:1px;text-transform:uppercase}
+.pay-box{background:#fff;color:#111;border-radius:14px;padding:16px;margin-top:12px}
+.pay-row{display:flex;justify-content:space-between;background:#f3efff;padding:10px;border-radius:10px;margin:8px 0;font-size:14px}
+.locked{filter:blur(4px);pointer-events:none;user-select:none}
+.footer{text-align:center;font-size:11px;color:#888;padding:16px}
+.badge{display:inline-block;background:#ffd700;color:#1a0f35;font-size:11px;font-weight:900;padding:4px 10px;border-radius:20px;margin-top:6px}
+</style>
+</head>
+<body>
+<div class="header"><div class="logo">XEROF <span>256</span></div><div class="sub">PREMIUM GOLD PRICE ACTION • JUSTMARKETS</div></div>
+<div class="quote">"Discipline beats emotion. One good setup a day is enough to change your life."<b>- XEROF 256 TRADER MINDSET</b></div>
+
+<div class="card">
+<div style="display:flex;justify-content:space-between;align-items:center"><div><div style="font-size:11px;color:#cbb8ff">XAUUSD - GOLD</div><div class="gold-price" id="price">$2,645.20</div></div><div class="live">● LIVE</div></div>
+<div style="display:flex;justify-content:space-between;font-size:12px;color:#cbb8ff;margin-top:8px"><span>Balance: $10.00</span><span>Target: $50.00 (500%)</span></div>
+<div class="bar"><div class="fill"></div></div>
+<div id="statusBadge"><span class="badge">🔒 LOCKED - ENTER ACCESS CODE</span></div>
+
+<div id="signalArea" class="locked">
+<div class="signal-box"><h2 id="signalText">⏳ WAITING FOR SETUP...</h2><p id="signalDetail" style="font-size:13px;color:#cbb8ff;margin-top:6px">Bot scanning M5 Engulfing + Support / Resistance<br>London: 10:00 - 22:00 EAT</p></div>
+<button class="btn btn-gold" onclick="checkSignal()">🔍 CHECK SIGNAL NOW</button>
+</div>
+</div>
+
+<div class="card">
+<h3 style="color:#ffd700">🔑 Enter Access Code</h3>
+<p style="font-size:13px;color:#cbb8ff;margin:8px 0" id="accessInfo">Trial = 2 Days Free | Premium = 30 Days - $35</p>
+<input id="codeInput" placeholder="e.g. XEROF-TRIAL-001">
+<button class="btn btn-purple" onclick="activateCode()">✅ ACTIVATE ACCESS</button>
+<p id="codeMsg" style="font-size:13px;text-align:center;margin-top:8px;color:#ffd700"></p>
+<button class="btn btn-white" onclick="googleLogin()"> <img src="https://www.google.com/favicon.ico" width="18"> Continue with Google</button>
+</div>
+
+<div class="card">
+<h3 style="color:#ffd700">💎 Get Premium - $35 / Month</h3>
+<p style="font-size:13px;color:#cbb8ff;margin:8px 0">1. Pay to MTN / Airtel below<br>2. Send proof on WhatsApp<br>3. Receive your PREMIUM Access Code</p>
+<button class="btn btn-purple" onclick="showPay()">💎 SHOW PAYMENT NUMBERS</button>
+<div class="pay-box" id="payBox" style="display:none">
+<div class="pay-row"><span>📱 <b>MTN MoMo</b></span><b>0794745128</b></div>
+<div class="pay-row"><span>📱 <b>Airtel Money</b></span><b>0708518242</b></div>
+<div class="pay-row"><span>💰 <b>Premium Monthly</b></span><b>$35</b></div>
+<div class="pay-row"><span>🎁 <b>Free Trial</b></span><b>2 Days</b></div>
+<button class="btn btn-green" onclick="sendWhatsApp()">📲 Send Payment Proof on WhatsApp</button>
+<p style="font-size:12px;color:#666;text-align:center;margin-top:8px">WhatsApp: 0767590921<br>Owner: XEROF 256</p>
+</div>
+<button class="btn btn-gold" onclick="requestTrial()">🎁 Request 2-Day FREE Trial Code</button>
+</div>
+
+<div class="card">
+<h3 style="color:#ffd700">📊 Today's Rules</h3>
+<p style="font-size:13px;line-height:1.7;color:#ddd;margin-top:8px">✅ Pair: XAUUSD Only<br>✅ Max 3 Trades / Day<br>✅ Stop After 2 Losses<br>✅ SL: $1.50 | TP: $2.25<br>✅ Auto Stop at 500% ($50)</p>
+</div>
+
+<div class="card" style="text-align:center">
+<h4 style="color:#888">👑 Admin - Generate Codes</h4>
+<input id="adminPass" placeholder="Admin Password" style="margin-top:10px">
+<button class="btn btn-purple" onclick="adminLogin()">🔓 Open Admin</button>
+<div id="adminArea" style="display:none;margin-top:12px">
+<p style="font-size:13px;color:#cbb8ff">Click to generate new codes. Send them to subscribers.</p>
+<button class="btn btn-gold" onclick="genCode('TRIAL')">+ Generate TRIAL Code (2 Days)</button>
+<button class="btn btn-gold" onclick="genCode('PRO')">+ Generate PREMIUM Code (30 Days)</button>
+<div id="genResult" style="background:#0f0724;padding:12px;border-radius:10px;margin-top:10px;font-size:13px;text-align:left"></div>
+</div>
+</div>
+
+<div class="footer">XEROF 256 © 2026 • Trading involves risk. Trade demo first.</div>
+
+<script>
+let base=2645.20;
+let trialCodes=['XEROF-TRIAL-001','XEROF-TRIAL-002','XEROF-TRIAL-003','XEROF-TRIAL-004','XEROF-TRIAL-005'];
+let proCodes=['XEROF-PRO-001','XEROF-PRO-002','XEROF-PRO-003','XEROF-PRO-004','XEROF-PRO-005'];
+let saved = JSON.parse(localStorage.getItem('xerof_access')||'null');
+function checkSaved(){
+  if(saved && Date.now() < saved.expires){
+    unlock(saved.type, saved.expires);
+  }
+}
+function unlock(type, expires){
+  document.getElementById('signalArea').classList.remove('locked');
+  let days = Math.ceil((expires-Date.now())/86400000);
+  document.getElementById('statusBadge').innerHTML = '<span class="badge" style="background:#00c853;color:white">✅ ' + type + ' ACTIVE - ' + days + ' DAYS LEFT</span>';
+  document.getElementById('codeMsg').innerText = type + ' activated! Expires in ' + days + ' day(s).';
+}
+function activateCode(){
+  let code = document.getElementById('codeInput').value.trim().toUpperCase();
+  if(!code) return alert('Enter code first');
+  // Check stored generated codes
+  let extra = JSON.parse(localStorage.getItem('xerof_extra_codes')||'[]');
+  let allTrial = trialCodes.concat(extra.filter(c=>c.startsWith('XEROF-TRIAL')));
+  let allPro = proCodes.concat(extra.filter(c=>c.startsWith('XEROF-PRO')));
+  let type=null, days=0;
+  if(allTrial.includes(code)){ type='TRIAL'; days=2; }
+  if(allPro.includes(code)){ type='PREMIUM'; days=30; }
+  if(!type){ document.getElementById('codeMsg').innerText='❌ Invalid code. Pay and request a valid code.'; return; }
+  let expires = Date.now() + days*86400000;
+  localStorage.setItem('xerof_access', JSON.stringify({code,type,expires}));
+  unlock(type, expires);
+}
+function checkSignal(){
+  const sig=[
+    {t:'🟢 BUY SIGNAL - XAUUSD', d:'Entry: '+base.toFixed(2)+' | SL: '+(base-1.5).toFixed(2)+' | TP: '+(base+2.25).toFixed(2)+'<br>Bullish Engulfing at Support'},
+    {t:'🔴 SELL SIGNAL - XAUUSD', d:'Entry: '+base.toFixed(2)+' | SL: '+(base+1.5).toFixed(2)+' | TP: '+(base-2.25).toFixed(2)+'<br>Bearish Engulfing at Resistance'},
+    {t:'⏳ NO TRADE - WAIT', d:'No clean Price Action setup yet. Patience = Profit.'}
+  ];
+  let s=sig[Math.floor(Math.random()*sig.length)];
+  document.getElementById('signalText').innerText=s.t;
+  document.getElementById('signalDetail').innerHTML=s.d;
+}
+function showPay(){ document.getElementById('payBox').style.display='block'; }
+function googleLogin(){ alert('Sign in with Google - V2: Connect backend to enable real login. For now use Access Code.'); }
+function sendWhatsApp(){ window.open('https://wa.me/256767590921?text='+encodeURIComponent('Hello XEROF 256, I paid $35 for Premium. Here is my proof, please send my access code:'),'_blank'); }
+function requestTrial(){ window.open('https://wa.me/256767590921?text='+encodeURIComponent('Hello XEROF 256, I want the 2-Day FREE Trial code please.'),'_blank'); }
+function adminLogin(){
+  if(document.getElementById('adminPass').value==='XEROF256ADMIN'){ document.getElementById('adminArea').style.display='block'; } else alert('Wrong admin password');
+}
+function genCode(type){
+  let num = Math.floor(100+Math.random()*900);
+  let code = type==='TRIAL' ? 'XEROF-TRIAL-'+num : 'XEROF-PRO-'+num;
+  let extra = JSON.parse(localStorage.getItem('xerof_extra_codes')||'[]');
+  extra.push(code); localStorage.setItem('xerof_extra_codes', JSON.stringify(extra));
+  document.getElementById('genResult').innerHTML += '<div>✅ '+code+' - '+(type==='TRIAL'?'2 Days':'30 Days')+' - Copy and send to subscriber</div>';
+}
+setInterval(()=>{ base+=(Math.random()-0.5)*1.2; document.getElementById('price').innerText='$'+base.toFixed(2); },2000);
+checkSaved();
+</script>
+</body>
+</html>
